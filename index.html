@@ -358,8 +358,23 @@
   }
   .reel-play:hover{ background:rgba(20,19,24,0.85); }
   .reel-play svg{ width:16px; height:16px; margin-left:2px; fill:var(--text); }
-  .reel-card.is-playing .reel-play{ opacity:0; }
-  .reel-card.is-playing:hover .reel-play, .reel-card.is-playing .reel-play:focus-visible{ opacity:1; }
+  .reel-fullscreen{
+    position:absolute;
+    right:10px; bottom:10px;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:rgba(20,19,24,0.7);
+    border:1px solid var(--border-strong);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    cursor:pointer;
+    z-index:1;
+    transition:background 0.15s ease;
+  }
+  .reel-fullscreen:hover{ background:rgba(20,19,24,0.85); }
+  .reel-fullscreen svg{ width:14px; height:14px; fill:var(--text); }
   @media (max-width:900px){
     .reel-grid{ grid-template-columns:repeat(2, 1fr); }
   }
@@ -497,6 +512,8 @@
     .reel-grid{ gap:10px; }
     .reel-play{ width:42px; height:42px; }
     .reel-play svg{ width:13px; height:13px; }
+    .reel-fullscreen{ width:28px; height:28px; right:8px; bottom:8px; }
+    .reel-fullscreen svg{ width:11px; height:11px; }
     .booking{ padding-bottom:96px; }
   }
 </style>
@@ -565,35 +582,35 @@
     <div class="reel-grid">
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.jpg" playsinline loop muted preload="none"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
     </div>
   </section>
@@ -724,6 +741,7 @@
     cards.forEach(function(card){
       var video = card.querySelector('.reel-video');
       var playBtn = card.querySelector('.reel-play');
+      var fsBtn = card.querySelector('.reel-fullscreen');
       if(!video || !playBtn) return;
 
       function play(){
@@ -745,9 +763,38 @@
       video.addEventListener('click', function(){
         if(video.paused){ play(); } else { video.pause(); }
       });
-      video.addEventListener('play', function(){ card.classList.add('is-playing'); });
-      video.addEventListener('pause', function(){ card.classList.remove('is-playing'); });
-      video.addEventListener('ended', function(){ card.classList.remove('is-playing'); });
+      video.addEventListener('play', function(){
+        card.classList.add('is-playing');
+        playBtn.style.display = 'none';
+      });
+      video.addEventListener('pause', function(){
+        card.classList.remove('is-playing');
+        playBtn.style.display = '';
+      });
+      video.addEventListener('ended', function(){
+        card.classList.remove('is-playing');
+        playBtn.style.display = '';
+      });
+
+      if(fsBtn){
+        fsBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          if(video.requestFullscreen){ video.requestFullscreen(); }
+          else if(video.webkitRequestFullscreen){ video.webkitRequestFullscreen(); }
+          else if(video.webkitEnterFullscreen){ video.webkitEnterFullscreen(); }
+        });
+      }
+
+      function onFullscreenChange(){
+        var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        if(fsEl !== video){
+          playBtn.style.display = '';
+        }
+      }
+      video.addEventListener('fullscreenchange', onFullscreenChange);
+      video.addEventListener('webkitfullscreenchange', onFullscreenChange);
+      document.addEventListener('fullscreenchange', onFullscreenChange);
+      document.addEventListener('webkitfullscreenchange', onFullscreenChange);
     });
   })();
 </script>
