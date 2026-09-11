@@ -664,6 +664,8 @@
     function start(){
       var distance = firstDup.offsetLeft - first.offsetLeft;
       if(distance <= 0) return;
+      /* TEMP DEBUG — remove once diagnosed */
+      console.log('[carousel] (re)start at', Math.round(performance.now()), 'ms, distance=', distance, 'innerWidth=', window.innerWidth, 'innerHeight=', window.innerHeight);
       track.classList.remove('is-animating');
       track.style.setProperty('--marquee-distance', distance + 'px');
       // force reflow so the animation restarts fresh with the new value
@@ -684,6 +686,8 @@
 
     var resizeTimer;
     window.addEventListener('resize', function(){
+      /* TEMP DEBUG — remove once diagnosed */
+      console.log('[carousel] resize event fired at', Math.round(performance.now()), 'ms, innerWidth=', window.innerWidth, 'innerHeight=', window.innerHeight);
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(start, 150);
     });
