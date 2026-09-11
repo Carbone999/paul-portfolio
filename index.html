@@ -671,10 +671,16 @@
     if(pending <= 0){ start(); }
 
     var resizeTimer;
+    var lastWidth = window.innerWidth;
     window.addEventListener('resize', function(){
+      // Mobile browsers fire 'resize' when the address bar collapses/expands
+      // during scroll — that only changes height, never width. Restarting
+      // the animation on those would replay it from scratch mid-scroll.
+      if(window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(start, 150);
-    });
+    }, { passive:true });
   })();
 
   (function(){
