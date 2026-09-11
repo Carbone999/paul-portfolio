@@ -558,35 +558,35 @@
     </div>
     <div class="reel-grid">
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
       <div class="reel-card">
-        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.mp4" playsinline loop muted preload="auto"></video>
+        <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.jpg" playsinline loop muted preload="none"></video>
         <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
     </div>
@@ -713,15 +713,6 @@
       var video = card.querySelector('.reel-video');
       var playBtn = card.querySelector('.reel-play');
       if(!video || !playBtn) return;
-
-      function showFirstFrame(){
-        var p = video.play();
-        if(p && p.then){
-          p.then(function(){ video.pause(); video.currentTime = 0; }).catch(function(){});
-        }
-      }
-      if(video.readyState >= 2){ showFirstFrame(); }
-      else{ video.addEventListener('loadeddata', showFirstFrame, { once:true }); }
 
       function play(){
         cards.forEach(function(other){
