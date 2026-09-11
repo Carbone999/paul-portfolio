@@ -269,13 +269,6 @@
     gap:96px;
     will-change:transform;
   }
-  .marquee-track.is-animating{
-    animation:marquee 24s linear infinite;
-  }
-  @keyframes marquee{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(calc(-1 * var(--marquee-distance))); }
-  }
   .marquee-track img{
     height:30px;
     width:auto;
@@ -666,17 +659,33 @@
     var first = imgs[0];
     var firstDup = imgs[7];
 
+    var styleEl = document.createElement('style');
+    document.head.appendChild(styleEl);
+    var started = false;
+    var startTimer = null;
+
     function start(){
       var distance = firstDup.offsetLeft - first.offsetLeft;
       if(distance <= 0) return;
+      // Bake the distance as a literal px value into a fresh @keyframes rule
+      // instead of referencing a CSS custom property from inside @keyframes —
+      // support for live-updating that combination is inconsistent across
+      // mobile browser engines and can leave the animation never starting.
+      styleEl.textContent =
+        '@keyframes marqueeAnim{from{transform:translateX(0)}to{transform:translateX(-' + distance + 'px)}}' +
+        '.marquee-track.is-animating{animation:marqueeAnim 24s linear infinite}';
       track.classList.remove('is-animating');
-      track.style.setProperty('--marquee-distance', distance + 'px');
-      // force reflow so the animation restarts fresh with the new value
-      // rather than mutating a variable an already-running animation reads.
       void track.offsetWidth;
       track.classList.add('is-animating');
+      started = true;
     }
 
+    function scheduleStart(delay){
+      clearTimeout(startTimer);
+      startTimer = setTimeout(start, delay);
+    }
+
+    // Primary path: start once every logo has finished decoding.
     var pending = imgs.length;
     imgs.forEach(function(img){
       if(img.complete){ pending--; }
@@ -686,6 +695,12 @@
       }
     });
     if(pending <= 0){ start(); }
+
+    // Safety net: some mobile engines don't reliably fire load/error for
+    // data-URI images, which would otherwise leave the carousel frozen
+    // forever. Force a start attempt shortly after load regardless.
+    scheduleStart(1200);
+    window.addEventListener('load', function(){ scheduleStart(300); });
 
     var resizeTimer;
     var lastWidth = window.innerWidth;
