@@ -625,33 +625,10 @@
     if(!track || imgs.length !== 14) return;
     var first = imgs[0];
     var firstDup = imgs[7];
-    var isMobile = window.matchMedia('(max-width:720px)').matches;
-    var mobileStyleEl = null;
 
     function start(){
       var distance = firstDup.offsetLeft - first.offsetLeft;
       if(distance <= 0) return;
-
-      if(isMobile){
-        // Mobile-only path: some mobile engines don't reliably re-evaluate a
-        // CSS custom property read from inside an infinite @keyframes on
-        // every loop iteration, causing a visible flash each time the
-        // animation wraps. Bake the distance as a literal px value into a
-        // dedicated keyframe instead — desktop is untouched, it still uses
-        // the var(--marquee-distance) mechanism below.
-        if(!mobileStyleEl){
-          mobileStyleEl = document.createElement('style');
-          document.head.appendChild(mobileStyleEl);
-        }
-        mobileStyleEl.textContent =
-          '@keyframes marqueeMobile{from{transform:translateX(0)}to{transform:translateX(-' + distance + 'px)}}' +
-          '.marquee-track.is-animating-mobile{animation:marqueeMobile 24s linear infinite}';
-        track.classList.remove('is-animating-mobile');
-        void track.offsetWidth;
-        track.classList.add('is-animating-mobile');
-        return;
-      }
-
       track.classList.remove('is-animating');
       track.style.setProperty('--marquee-distance', distance + 'px');
       // force reflow so the animation restarts fresh with the new value
