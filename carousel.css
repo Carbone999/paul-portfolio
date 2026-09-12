@@ -43,4 +43,27 @@
 @media (max-width:720px){
   .marquee-track img.logo-happn{ filter:none; }
 }
+
+/* MOBILE-ONLY FIX (authorized 2026-09-12): mask-image forces the browser to
+   render the strip into an offscreen masked layer, which some mobile engines
+   re-rasterize right when the looping transform animation resets — visible
+   as a whole-strip blink at that point in the cycle. Swapping it for two
+   plain gradient overlays avoids that recompute. Desktop is unaffected;
+   its mask-image above still applies there since this only fires below 720px. */
+@media (max-width:720px){
+  .marquee{
+    -webkit-mask-image:none;
+    mask-image:none;
+  }
+  .marquee::before, .marquee::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    width:60px;
+    z-index:2;
+    pointer-events:none;
+  }
+  .marquee::before{ left:0; background:linear-gradient(90deg, var(--bg), transparent); }
+  .marquee::after{ right:0; background:linear-gradient(270deg, var(--bg), transparent); }
+}
 /* END CAROUSEL - LOCKED */
