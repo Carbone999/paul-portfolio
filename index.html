@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="carousel.css">
 <style>
   :root{
     --bg:#0b0a0d;
@@ -247,43 +248,7 @@
     margin-bottom:30px;
     transform:translateY(-10px);
   }
-  /* CAROUSEL - LOCKED - DO NOT MODIFY */
-  .marquee{
-    position:relative;
-    overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-  }
-  .marquee-track{
-    display:flex;
-    align-items:center;
-    flex-wrap:nowrap;
-    width:max-content;
-    gap:96px;
-    will-change:transform;
-  }
-  .marquee-track.is-animating{
-    animation:marquee 24s linear infinite;
-  }
-  @keyframes marquee{
-    from{ transform:translateX(0); }
-    to{ transform:translateX(calc(-1 * var(--marquee-distance))); }
-  }
-  .marquee-track img{
-    height:30px;
-    width:auto;
-    flex:none;
-    opacity:0.82;
-    transition:opacity 0.15s ease;
-  }
-  .marquee-track img:hover{ opacity:1; }
-  .logo-mono{ filter:brightness(0) invert(1); }
-  .marquee-track img.logo-kiabi{ height:66px; filter:brightness(3.4); }
-  .marquee-track img.logo-happn{ height:63px; }
-  .marquee-track img.logo-kayak{ height:64.6px; }
-  .marquee-track img.logo-dishop{ height:27px; }
-  .marquee-track img.logo-fm{ height:34.5px; }
-  /* END CAROUSEL - LOCKED */
+  /* Carousel CSS lives in carousel.css — OFF-LIMITS, see that file */
 
   /* ---------- section shell ---------- */
   section{ padding:136px 0; }
