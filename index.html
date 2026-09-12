@@ -618,49 +618,7 @@
 </footer>
 
 <script>
-  /* CAROUSEL - LOCKED - DO NOT MODIFY */
-  (function(){
-    var track = document.querySelector('.marquee-track');
-    var imgs = track ? track.querySelectorAll('img') : [];
-    if(!track || imgs.length !== 14) return;
-    var first = imgs[0];
-    var firstDup = imgs[7];
-
-    function start(){
-      var distance = firstDup.offsetLeft - first.offsetLeft;
-      if(distance <= 0) return;
-      track.classList.remove('is-animating');
-      track.style.setProperty('--marquee-distance', distance + 'px');
-      // force reflow so the animation restarts fresh with the new value
-      // rather than mutating a variable an already-running animation reads.
-      void track.offsetWidth;
-      track.classList.add('is-animating');
-    }
-
-    var pending = imgs.length;
-    imgs.forEach(function(img){
-      if(img.complete){ pending--; }
-      else{
-        img.addEventListener('load', function(){ pending--; if(pending <= 0) start(); });
-        img.addEventListener('error', function(){ pending--; if(pending <= 0) start(); });
-      }
-    });
-    if(pending <= 0){ start(); }
-
-    var resizeTimer;
-    var lastWidth = window.innerWidth;
-    window.addEventListener('resize', function(){
-      // Mobile browsers fire 'resize' when the address bar collapses/expands
-      // during scroll — that only changes height, never width. Restarting
-      // the animation on those replays it from scratch mid-scroll, which is
-      // the mobile-only stutter this guard exists to prevent.
-      if(window.innerWidth === lastWidth) return;
-      lastWidth = window.innerWidth;
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(start, 150);
-    });
-  })();
-  /* END CAROUSEL - LOCKED */
+  /* Carousel animation is pure CSS now (carousel.css) — no JS needed. */
 
   (function(){
     var fill = document.getElementById('scrubFill');

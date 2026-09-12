@@ -12,13 +12,11 @@
   width:max-content;
   gap:96px;
   will-change:transform;
-}
-.marquee-track.is-animating{
   animation:marquee 24s linear infinite;
 }
 @keyframes marquee{
   from{ transform:translateX(0); }
-  to{ transform:translateX(calc(-1 * var(--marquee-distance))); }
+  to{ transform:translateX(-50%); }
 }
 .marquee-track img{
   height:30px;
