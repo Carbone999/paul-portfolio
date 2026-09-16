@@ -12,11 +12,7 @@
   width:max-content;
   gap:96px;
   will-change:transform;
-  animation:marquee 24s linear infinite;
-}
-@keyframes marquee{
-  from{ transform:translateX(0); }
-  to{ transform:translateX(-50%); }
+  /* Position is driven by JS (requestAnimationFrame), not a CSS animation. */
 }
 .marquee-track img{
   height:30px;

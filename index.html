@@ -149,6 +149,34 @@
   }
   .nav-links a:hover, .nav-links a:focus-visible{ color:var(--text); }
 
+  /* ---------- sélecteur de langue ---------- */
+  .lang{
+    display:flex;
+    align-items:center;
+    gap:2px;
+    padding:3px;
+    border:1px solid var(--border-strong);
+    border-radius:999px;
+    flex:none;
+  }
+  .lang-btn{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    font-weight:500;
+    letter-spacing:0.08em;
+    background:none;
+    border:0;
+    color:var(--text-faint);
+    padding:4px 9px;
+    border-radius:999px;
+    cursor:pointer;
+    line-height:1;
+    transition:color 0.15s ease, background 0.15s ease;
+  }
+  .lang-btn:hover{ color:var(--text); }
+  .lang-btn.is-active{ background:var(--text); color:var(--bg); }
+  .lang-btn:focus-visible{ outline:2px solid var(--accent-2); outline-offset:2px; }
+
   .btn{
     display:inline-flex;
     align-items:center;
@@ -459,7 +487,9 @@
     .nav-inner{ padding:14px 16px; }
     .brand{ font-size:16px; gap:8px; }
     .brand small{ display:none; }
-    .nav-links{ gap:0; }
+    .nav-links{ gap:8px; }
+    .lang{ padding:2px; gap:0; }
+    .lang-btn{ font-size:10.5px; padding:4px 6px; letter-spacing:0.04em; }
     .btn{ padding:10px 16px; font-size:13.5px; }
     .hero{ padding:52px 0 60px; }
     section{ padding:72px 0; }
@@ -484,13 +514,18 @@
 <nav>
   <div class="nav-inner">
     <a href="#top" class="brand" style="text-decoration:none;">
-      <span class="brand-dot"></span>PAUL <small>/ monteur vidéo</small>
+      <span class="brand-dot"></span>PAUL <small data-i18n="brand.role">/ monteur vidéo</small>
     </a>
     <div class="nav-links">
-      <a href="#clients">Clients</a>
-      <a href="#travaux">Travaux</a>
-      <a href="#methode">Méthode</a>
-      <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Réserver un appel</a>
+      <a href="#clients" data-i18n="nav.clients">Clients</a>
+      <a href="#travaux" data-i18n="nav.work">Travaux</a>
+      <a href="#methode" data-i18n="nav.process">Méthode</a>
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" class="lang-btn is-active" data-lang="fr">FR</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="pl">PL</button>
+      </div>
+      <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="cta.book">Réserver un appel</a>
     </div>
   </div>
 </nav>
@@ -498,19 +533,19 @@
 <main id="top">
 
   <header class="hero wrap">
-    <div class="eyebrow"><span class="rule"></span><span class="tc" id="tcHero">00:00</span> · UGC · PUBLICITÉ · FORMAT 9:16</div>
-    <h1>DU RUSH AU<br><span class="hl">SCROLL-STOPPER.</span><br>EN 24 HEURES.</h1>
-    <p>Monteur vidéo freelance pour agences et marques. Contenu UGC et publicité à la performance, pensé et monté 100&nbsp;% vertical.</p>
+    <div class="eyebrow"><span class="rule"></span><span class="tc" id="tcHero">00:00</span><span data-i18n="hero.eyebrow"> · UGC · PUBLICITÉ · FORMAT 9:16</span></div>
+    <h1 data-i18n-html="hero.h1">DU RUSH AU<br><span class="hl">SCROLL-STOPPER.</span><br>EN 24 HEURES.</h1>
+    <p data-i18n-html="hero.sub">Monteur vidéo freelance pour agences et marques. Contenu UGC et publicité à la performance, pensé et monté 100&nbsp;% vertical.</p>
     <div class="hero-actions">
-      <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Réserver un appel</a>
-      <a href="#travaux" class="btn btn-ghost">Voir les travaux</a>
+      <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="cta.book">Réserver un appel</a>
+      <a href="#travaux" class="btn btn-ghost" data-i18n="cta.seework">Voir les travaux</a>
     </div>
-    <div class="session"><span class="dot"></span><span class="tc" id="liveTc">00:00:00:00</span> SESSION EN COURS</div>
+    <div class="session"><span class="dot"></span><span class="tc" id="liveTc">00:00:00:00</span><span data-i18n="hero.session"> SESSION EN COURS</span></div>
   </header>
 
   <div class="trust" id="clients">
     <div class="wrap">
-      <div class="trust-label">Ils m'ont fait confiance</div>
+      <div class="trust-label" data-i18n="trust.label">Ils m'ont fait confiance</div>
     </div>
     <div class="marquee">
       <div class="marquee-track">
@@ -533,92 +568,300 @@
   </div>
 
   <section id="travaux" class="wrap">
-    <div class="eyebrow"><span class="rule"></span><span class="tc">01:12</span> · SÉLECTION</div>
+    <div class="eyebrow"><span class="rule"></span><span class="tc">01:12</span><span data-i18n="work.eyebrow"> · SÉLECTION</span></div>
     <div class="section-head">
-      <h2>Travaux récents</h2>
-      <p>Hooks A/B testés, déclinaisons multi-formats, livraison rapide via Frame.io.</p>
+      <h2 data-i18n="work.h2">Travaux récents</h2>
+      <p data-i18n="work.sub">Hooks A/B testés, déclinaisons multi-formats, livraison rapide via Frame.io.</p>
     </div>
     <div class="reel-grid">
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.jpg" playsinline loop muted preload="metadata"></video>
-        <button class="reel-play" type="button" aria-label="Lire la vidéo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+        <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
     </div>
   </section>
 
   <section id="methode" class="wrap">
     <div class="process-head">
-      <div class="eyebrow"><span class="rule"></span><span class="tc">03:40</span> · COMMENT ÇA SE PASSE</div>
+      <div class="eyebrow"><span class="rule"></span><span class="tc">03:40</span><span data-i18n="process.eyebrow"> · COMMENT ÇA SE PASSE</span></div>
       <div class="row">
-        <h2>Carré, rapide,<br>vertical.</h2>
-        <p>Pas de blabla. Un process taillé pour le volume publicitaire et l'itération rapide.</p>
+        <h2 data-i18n-html="process.h2">Carré, rapide,<br>vertical.</h2>
+        <p data-i18n="process.sub">Pas de blabla. Un process taillé pour le volume publicitaire et l'itération rapide.</p>
       </div>
     </div>
     <div class="process-grid">
       <div class="process-cell">
-        <div class="process-num">01 / V1</div>
-        <h3>Première version en 24&nbsp;h</h3>
-        <p>Tu envoies les rushs, je renvoie une V1 montée le lendemain. Tu testes vite, tu itères vite.</p>
+        <div class="process-num" data-i18n="step1.num">01 / V1</div>
+        <h3 data-i18n-html="step1.h3">Première version en 24&nbsp;h</h3>
+        <p data-i18n="step1.p">Tu envoies les rushs, je renvoie une V1 montée le lendemain. Tu testes vite, tu itères vite.</p>
       </div>
       <div class="process-cell">
-        <div class="process-num">02 / RÉVISIONS</div>
-        <h3>Retours via Frame.io</h3>
-        <p>Commentaires timecodés, validation avant déclinaison, zéro aller-retour par mail. Suivi clair jusqu'à la version finale.</p>
+        <div class="process-num" data-i18n="step2.num">02 / RÉVISIONS</div>
+        <h3 data-i18n="step2.h3">Retours via Frame.io</h3>
+        <p data-i18n="step2.p">Commentaires timecodés, validation avant déclinaison, zéro aller-retour par mail. Suivi clair jusqu'à la version finale.</p>
       </div>
       <div class="process-cell">
-        <div class="process-num">03 / FORMAT</div>
-        <h3>Vertical natif</h3>
-        <p>Montage pensé 9:16 dès le départ, déclinaisons 4:5 et 1:1 sur demande. Sous-titres et sound design inclus.</p>
+        <div class="process-num" data-i18n="step3.num">03 / FORMAT</div>
+        <h3 data-i18n="step3.h3">Vertical natif</h3>
+        <p data-i18n="step3.p">Montage pensé 9:16 dès le départ, déclinaisons 4:5 et 1:1 sur demande. Sous-titres et sound design inclus.</p>
       </div>
     </div>
   </section>
 
   <section id="booking" class="wrap booking">
-    <div class="eyebrow"><span class="rule"></span><span class="tc">04:55</span> · ON EN PARLE ?</div>
-    <h2>Réserve un créneau</h2>
-    <p>Un appel de 30 min pour cadrer ton besoin, ton volume et tes deadlines.</p>
-    <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="calendlyLink">Réserver un appel</a>
+    <div class="eyebrow"><span class="rule"></span><span class="tc">04:55</span><span data-i18n="booking.eyebrow"> · ON EN PARLE ?</span></div>
+    <h2 data-i18n="booking.h2">Réserve un créneau</h2>
+    <p data-i18n="booking.sub">Un appel de 30 min pour cadrer ton besoin, ton volume et tes deadlines.</p>
+    <a href="https://calendly.com/studiovertikal/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="calendlyLink" data-i18n="cta.book">Réserver un appel</a>
   </section>
 
 </main>
 
 <footer>
   <div class="wrap footer-inner">
-    <span>PAUL — MONTEUR VIDÉO · UGC &amp; ADS · FORMAT 9:16</span>
-    <a href="#top">↑ Retour en haut</a>
+    <span data-i18n-html="footer.line">PAUL — MONTEUR VIDÉO · UGC &amp; ADS · FORMAT 9:16</span>
+    <a href="#top" data-i18n="footer.top">↑ Retour en haut</a>
   </div>
 </footer>
 
 <script>
-  /* Carousel animation is pure CSS now (carousel.css) — no JS needed. */
+
+  /* ---------- i18n : FR (défaut) / EN / PL ---------- */
+  (function(){
+    var I18N = {
+      fr: {
+        "meta.title": "Paul — Monteur Vidéo",
+        "brand.role": "/ monteur vidéo",
+        "nav.clients": "Clients",
+        "nav.work": "Travaux",
+        "nav.process": "Méthode",
+        "cta.book": "Réserver un appel",
+        "cta.seework": "Voir les travaux",
+        "hero.eyebrow": " · UGC · PUBLICITÉ · FORMAT 9:16",
+        "hero.h1": "DU RUSH AU<br><span class=\"hl\">SCROLL-STOPPER.</span><br>EN 24 HEURES.",
+        "hero.sub": "Monteur vidéo freelance pour agences et marques. Contenu UGC et publicité à la performance, pensé et monté 100&nbsp;% vertical.",
+        "hero.session": " SESSION EN COURS",
+        "trust.label": "Ils m'ont fait confiance",
+        "work.eyebrow": " · SÉLECTION",
+        "work.h2": "Travaux récents",
+        "work.sub": "Hooks A/B testés, déclinaisons multi-formats, livraison rapide via Frame.io.",
+        "process.eyebrow": " · COMMENT ÇA SE PASSE",
+        "process.h2": "Carré, rapide,<br>vertical.",
+        "process.sub": "Pas de blabla. Un process taillé pour le volume publicitaire et l'itération rapide.",
+        "step1.num": "01 / V1",
+        "step1.h3": "Première version en 24&nbsp;h",
+        "step1.p": "Tu envoies les rushs, je renvoie une V1 montée le lendemain. Tu testes vite, tu itères vite.",
+        "step2.num": "02 / RÉVISIONS",
+        "step2.h3": "Retours via Frame.io",
+        "step2.p": "Commentaires timecodés, validation avant déclinaison, zéro aller-retour par mail. Suivi clair jusqu'à la version finale.",
+        "step3.num": "03 / FORMAT",
+        "step3.h3": "Vertical natif",
+        "step3.p": "Montage pensé 9:16 dès le départ, déclinaisons 4:5 et 1:1 sur demande. Sous-titres et sound design inclus.",
+        "booking.eyebrow": " · ON EN PARLE ?",
+        "booking.h2": "Réserve un créneau",
+        "booking.sub": "Un appel de 30 min pour cadrer ton besoin, ton volume et tes deadlines.",
+        "footer.line": "PAUL — MONTEUR VIDÉO · UGC &amp; ADS · FORMAT 9:16",
+        "footer.top": "↑ Retour en haut",
+        "a11y.play": "Lire la vidéo",
+        "a11y.fullscreen": "Plein écran"
+      },
+      en: {
+        "meta.title": "Paul — Video Editor",
+        "brand.role": "/ video editor",
+        "nav.clients": "Clients",
+        "nav.work": "Work",
+        "nav.process": "Process",
+        "cta.book": "Book a call",
+        "cta.seework": "See the work",
+        "hero.eyebrow": " · UGC · ADS · 9:16 FORMAT",
+        "hero.h1": "FROM RUSHES TO<br><span class=\"hl\">SCROLL-STOPPER.</span><br>IN 24 HOURS.",
+        "hero.sub": "Freelance video editor for agencies and brands. UGC and performance ads, built and cut 100% vertical.",
+        "hero.session": " SESSION ACTIVE",
+        "trust.label": "Trusted by",
+        "work.eyebrow": " · SELECTED WORK",
+        "work.h2": "Recent work",
+        "work.sub": "A/B tested hooks, multi-format versions, fast delivery via Frame.io.",
+        "process.eyebrow": " · HOW IT WORKS",
+        "process.h2": "Tight, fast,<br>vertical.",
+        "process.sub": "No fluff. A process built for ad volume and fast iteration.",
+        "step1.num": "01 / V1",
+        "step1.h3": "First cut in 24 hours",
+        "step1.p": "You send the footage, I send back a cut the next day. You test fast, you iterate fast.",
+        "step2.num": "02 / REVISIONS",
+        "step2.h3": "Feedback on Frame.io",
+        "step2.p": "Timecoded comments, sign-off before versioning, zero email back-and-forth. Clear tracking through to the final cut.",
+        "step3.num": "03 / FORMAT",
+        "step3.h3": "Vertical-native",
+        "step3.p": "Cut for 9:16 from the start, 4:5 and 1:1 versions on request. Subtitles and sound design included.",
+        "booking.eyebrow": " · LET'S TALK",
+        "booking.h2": "Book a slot",
+        "booking.sub": "A 30-minute call to scope your needs, your volume and your deadlines.",
+        "footer.line": "PAUL — VIDEO EDITOR · UGC &amp; ADS · 9:16",
+        "footer.top": "↑ Back to top",
+        "a11y.play": "Play video",
+        "a11y.fullscreen": "Fullscreen"
+      },
+      pl: {
+        "meta.title": "Paul — Montażysta Wideo",
+        "brand.role": "/ montażysta wideo",
+        "nav.clients": "Klienci",
+        "nav.work": "Realizacje",
+        "nav.process": "Proces",
+        "cta.book": "Umów rozmowę",
+        "cta.seework": "Zobacz realizacje",
+        "hero.eyebrow": " · UGC · REKLAMY · FORMAT 9:16",
+        "hero.h1": "OD MATERIAŁU DO<br><span class=\"hl\">SCROLL-STOPPERA.</span><br>W 24 GODZINY.",
+        "hero.sub": "Montażysta wideo freelance dla agencji i marek. UGC i reklamy performance — myślane i montowane w 100% w pionie.",
+        "hero.session": " SESJA AKTYWNA",
+        "trust.label": "Zaufali mi",
+        "work.eyebrow": " · WYBRANE REALIZACJE",
+        "work.h2": "Ostatnie realizacje",
+        "work.sub": "Hooki testowane A/B, wersje pod różne formaty, szybka dostawa przez Frame.io.",
+        "process.eyebrow": " · JAK TO DZIAŁA",
+        "process.h2": "Konkretnie, szybko,<br>w pionie.",
+        "process.sub": "Bez gadania. Proces skrojony pod duże wolumeny reklam i szybkie iteracje.",
+        "step1.num": "01 / V1",
+        "step1.h3": "Pierwsza wersja w 24&nbsp;h",
+        "step1.p": "Wysyłasz materiał, następnego dnia dostajesz zmontowaną V1. Testujesz szybko, iterujesz szybko.",
+        "step2.num": "02 / POPRAWKI",
+        "step2.h3": "Feedback przez Frame.io",
+        "step2.p": "Komentarze z timecodem, akceptacja przed wersjonowaniem, zero maili w tę i z powrotem. Jasny przebieg aż do wersji finalnej.",
+        "step3.num": "03 / FORMAT",
+        "step3.h3": "Natywny pion",
+        "step3.p": "Montaż pod 9:16 od początku, wersje 4:5 i 1:1 na życzenie. Napisy i sound design w cenie.",
+        "booking.eyebrow": " · POGADAJMY?",
+        "booking.h2": "Zarezerwuj termin",
+        "booking.sub": "30-minutowa rozmowa, żeby ustalić zakres, wolumen i deadline'y.",
+        "footer.line": "PAUL — MONTAŻYSTA WIDEO · UGC &amp; ADS · FORMAT 9:16",
+        "footer.top": "↑ Do góry",
+        "a11y.play": "Odtwórz wideo",
+        "a11y.fullscreen": "Pełny ekran"
+      }
+    };
+
+    var STORE = 'pd_lang';
+    var FALLBACK = 'fr';
+
+    function each(sel, fn){
+      Array.prototype.forEach.call(document.querySelectorAll(sel), fn);
+    }
+
+    function apply(lang){
+      var dict = I18N[lang] || I18N[FALLBACK];
+      document.documentElement.lang = lang;
+      if(dict['meta.title']) document.title = dict['meta.title'];
+
+      each('[data-i18n]', function(el){
+        var v = dict[el.getAttribute('data-i18n')];
+        if(v != null) el.textContent = v;
+      });
+      each('[data-i18n-html]', function(el){
+        var v = dict[el.getAttribute('data-i18n-html')];
+        if(v != null) el.innerHTML = v;
+      });
+      each('[data-i18n-aria]', function(el){
+        var v = dict[el.getAttribute('data-i18n-aria')];
+        if(v != null) el.setAttribute('aria-label', v);
+      });
+      each('.lang-btn', function(b){
+        var on = b.getAttribute('data-lang') === lang;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      try{ localStorage.setItem(STORE, lang); }catch(e){}
+    }
+
+    each('.lang-btn', function(b){
+      b.addEventListener('click', function(){ apply(b.getAttribute('data-lang')); });
+    });
+
+    // French by default; a returning visitor keeps whatever they picked last.
+    var saved = null;
+    try{ saved = localStorage.getItem(STORE); }catch(e){}
+    apply(saved && I18N[saved] ? saved : FALLBACK);
+  })();
+  /* CAROUSEL - LOCKED - DO NOT MODIFY */
+  (function(){
+    var track = document.querySelector('.marquee-track');
+    if(!track) return;
+
+    var SET_SIZE = 7;
+    var originals = Array.prototype.slice.call(track.children, 0, SET_SIZE);
+    if(originals.length < SET_SIZE) return;
+
+    var DISTANCE = 0;
+    var lastWidth = window.innerWidth;
+
+    // The strip scrolls left by exactly one 7-logo repeat, then wraps. At the
+    // end of that travel only (trackWidth - DISTANCE) px of logos remain on
+    // screen, so the track has to stay wider than the viewport by at least one
+    // repeat — otherwise the right-hand side runs out of logos and shows a
+    // black gap. Two copies only covered 1254px, which is why wide desktops
+    // emptied out while phones never did. Append whole copies until it fits.
+    function fit(){
+      DISTANCE = track.children[SET_SIZE].offsetLeft - track.children[0].offsetLeft;
+      if(DISTANCE <= 0) return;
+      var guard = 0;
+      while(track.scrollWidth - DISTANCE < window.innerWidth && guard++ < 20){
+        for(var i = 0; i < SET_SIZE; i++){
+          var clone = originals[i].cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        }
+      }
+    }
+
+    var start = null;
+    function frame(ts){
+      if(start === null) start = ts;
+      if(DISTANCE > 0){
+        var pos = ((ts - start) / 1000 * (DISTANCE / 24)) % DISTANCE;
+        track.style.transform = 'translateX(' + (-pos) + 'px)';
+      }
+      requestAnimationFrame(frame);
+    }
+
+    fit();
+    requestAnimationFrame(frame);
+    // Re-check once every logo has decoded, in case layout shifted.
+    window.addEventListener('load', fit);
+    // Width-only: mobile address bars fire resize on scroll with the same width.
+    window.addEventListener('resize', function(){
+      if(window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      fit();
+    });
+  })();
+  /* END CAROUSEL - LOCKED */
 
   (function(){
     var fill = document.getElementById('scrubFill');
