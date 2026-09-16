@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Paul — Monteur Vidéo</title>
+<title>Paul - Monteur Vidéo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -658,7 +658,7 @@
   (function(){
     var I18N = {
       fr: {
-        "meta.title": "Paul — Monteur Vidéo",
+        "meta.title": "Paul - Monteur Vidéo",
         "brand.role": "/ monteur vidéo",
         "nav.clients": "Clients",
         "nav.work": "Travaux",
@@ -694,7 +694,7 @@
         "a11y.fullscreen": "Plein écran"
       },
       en: {
-        "meta.title": "Paul — Video Editor",
+        "meta.title": "Paul - Video Editor",
         "brand.role": "/ video editor",
         "nav.clients": "Clients",
         "nav.work": "Work",
@@ -730,7 +730,7 @@
         "a11y.fullscreen": "Fullscreen"
       },
       pl: {
-        "meta.title": "Paul — Montażysta Wideo",
+        "meta.title": "Paul - Montażysta Wideo",
         "brand.role": "/ montażysta wideo",
         "nav.clients": "Klienci",
         "nav.work": "Realizacje",
@@ -807,7 +807,17 @@
     // French by default; a returning visitor keeps whatever they picked last.
     var saved = null;
     try{ saved = localStorage.getItem(STORE); }catch(e){}
-    apply(saved && I18N[saved] ? saved : FALLBACK);
+    var current = saved && I18N[saved] ? saved : FALLBACK;
+    apply(current);
+
+    // Some browsers (Safari in particular) don't repaint the tab label when
+    // document.title is set while the page is still parsing. Re-assert it once
+    // loading is finished so the tab always shows the right language.
+    window.addEventListener('load', function(){
+      var t = (I18N[document.documentElement.lang] || I18N[FALLBACK])['meta.title'];
+      if(t && document.title !== t) document.title = t;
+      document.title = t;
+    });
   })();
   /* CAROUSEL - LOCKED - DO NOT MODIFY */
   (function(){
