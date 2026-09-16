@@ -328,6 +328,19 @@
     object-fit:cover;
     background:transparent;
   }
+  /* Le poster natif disparaît dès l'appel à play(), avant que la première
+     image soit décodée — d'où le flash noir. Cette copie en superposition
+     reste visible jusqu'à ce qu'une vraie image de la vidéo soit affichée. */
+  .reel-poster{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    pointer-events:none;
+    transition:opacity 0.25s ease;
+  }
+  .reel-card.is-live .reel-poster{ opacity:0; }
   .reel-play{
     position:absolute;
     top:50%; left:50%;
@@ -576,34 +589,42 @@
     <div class="reel-grid">
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161268/clip1.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161272/clip2.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip3.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161259/clip4.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161262/clip5.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip6.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161277/clip7.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
       <div class="reel-card">
         <video class="reel-video" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.mp4" poster="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.jpg" playsinline loop muted preload="metadata"></video>
+        <img class="reel-poster" src="https://res.cloudinary.com/l8u3678e/video/upload/v1789161266/clip8.jpg" alt="" aria-hidden="true">
         <button class="reel-play" type="button" aria-label="Lire la vidéo" data-i18n-aria="a11y.play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="reel-fullscreen" type="button" aria-label="Plein écran" data-i18n-aria="a11y.fullscreen"><svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
       </div>
     </div>
@@ -916,6 +937,22 @@
       var playBtn = card.querySelector('.reel-play');
       var fsBtn = card.querySelector('.reel-fullscreen');
       if(!video || !playBtn) return;
+
+      // Drop the still only once the decoder has actually presented a frame,
+      // so the card never shows black while the clip is still buffering.
+      function goLive(){ card.classList.add('is-live'); }
+      if(typeof video.requestVideoFrameCallback === 'function'){
+        video.addEventListener('play', function(){
+          video.requestVideoFrameCallback(goLive);
+        });
+      }
+      video.addEventListener('playing', goLive);
+
+      // Warm the buffer as soon as the pointer lands on a card, so the wait
+      // between the click and the first frame is as short as possible.
+      card.addEventListener('pointerenter', function(){
+        if(video.preload !== 'auto'){ video.preload = 'auto'; video.load(); }
+      }, { once:true });
 
       function play(){
         cards.forEach(function(other){
