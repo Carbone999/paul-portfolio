@@ -1,2 +1,7 @@
 # Local Netlify folder
 .netlify
+
+# Secrets (clés API, mots de passe) : jamais dans Git
+.env
+.env.*
+!.env.example
