@@ -12,6 +12,7 @@ Site vitrine (UGC, publicité, format vertical 9:16).
 |---|---|
 | `index.html` | Tout le site : textes, styles, scripts, logos clients (images intégrées en base64), sélecteur de langue FR / EN / PL |
 | `carousel.css` | Bandeau défilant des logos clients. **Ne pas modifier** sans demande explicite de Paul. |
+| `fonts/` | Polices Anton, Manrope et JetBrains Mono hébergées sur le site (latin + caractères polonais), déclarées dans `fonts/fonts.css`. Aucun appel à Google Fonts : l'adresse IP des visiteurs n'est pas transmise à Google. Licence libre SIL OFL. |
 | `_headers` | Règles de cache Netlify (la page n'est jamais gardée en cache) |
 | `.gitignore` | Fichiers exclus de Git (`.netlify`, `.env`) |
 
@@ -60,7 +61,7 @@ Modifier un fichier dans `../Vidéos` ne change rien sur le site.
 
    ```bash
    D="$TMPDIR/portfolio-deploy" && rm -rf "$D" && mkdir -p "$D"
-   git archive dev index.html carousel.css _headers | tar -x -C "$D"
+   git archive dev index.html carousel.css _headers fonts | tar -x -C "$D"
    netlify deploy --dir="$D"
    ```
 
