@@ -464,6 +464,61 @@
   }
   .booking .btn{ font-size:15.5px; padding:15px 30px; }
 
+  /* ---------- legal notice (footer link + dialog) ---------- */
+  .legal-open{
+    background:none; border:0; padding:0; cursor:pointer;
+    font:inherit; letter-spacing:inherit; color:var(--text-muted);
+  }
+  .legal-open:hover{ color:var(--text); }
+  .legal{
+    width:min(680px, calc(100% - 32px));
+    max-height:min(85vh, 860px);
+    padding:0;
+    border:1px solid var(--border-strong);
+    border-radius:18px;
+    background:var(--bg-raised);
+    color:var(--text);
+    overflow:auto;
+  }
+  .legal::backdrop{ background:rgba(5,4,7,0.72); backdrop-filter:blur(4px); }
+  .legal-head{
+    position:sticky; top:0;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:22px 28px;
+    background:var(--bg-raised);
+    border-bottom:1px solid var(--border);
+  }
+  .legal-head h2{
+    margin:0;
+    font-family:var(--font-display); font-weight:400;
+    font-size:26px; line-height:1.1; letter-spacing:0.01em;
+    text-transform:uppercase;
+  }
+  .legal-close{
+    flex:none; width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--border-strong); background:none;
+    color:var(--text); font-size:20px; line-height:1; cursor:pointer;
+  }
+  .legal-close:hover{ border-color:var(--text-muted); }
+  .legal-body{ padding:8px 28px 28px; }
+  .legal-body h3{
+    margin:26px 0 10px;
+    font-family:var(--font-mono); font-size:12px; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  }
+  .legal-body p{ margin:0 0 12px; font-size:14.5px; line-height:1.65; color:var(--text-muted); }
+  .legal-body strong{ color:var(--text); font-weight:600; }
+  .legal-body a{ color:var(--text); }
+  .legal-body small{
+    display:block; margin-top:22px;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.04em; color:var(--text-faint);
+  }
+  @media (max-width:480px){
+    .legal-head{ padding:18px 20px; }
+    .legal-head h2{ font-size:21px; }
+    .legal-body{ padding:4px 20px 24px; }
+  }
+
   footer{
     border-top:1px solid var(--border);
     padding:36px 0;
@@ -680,9 +735,18 @@
 <footer>
   <div class="wrap footer-inner">
     <span data-i18n-html="footer.line">PAUL — MONTEUR VIDÉO · UGC &amp; ADS · FORMAT 9:16</span>
+    <button type="button" class="legal-open" data-i18n="footer.legal">Mentions légales</button>
     <a href="#top" data-i18n="footer.top">↑ Retour en haut</a>
   </div>
 </footer>
+
+<dialog id="legal" class="legal" aria-labelledby="legalTitle">
+  <div class="legal-head">
+    <h2 id="legalTitle" data-i18n="legal.title">Mentions légales et confidentialité</h2>
+    <button type="button" class="legal-close" data-i18n-aria="legal.close" aria-label="Fermer">×</button>
+  </div>
+  <div class="legal-body" data-i18n-html="legal.body"></div>
+</dialog>
 
 <script>
 
@@ -722,6 +786,10 @@
         "booking.sub": "Un appel de 30 min pour cadrer ton besoin, ton volume et tes deadlines.",
         "footer.line": "PAUL — MONTEUR VIDÉO · UGC &amp; ADS · FORMAT 9:16",
         "footer.top": "↑ Retour en haut",
+        "footer.legal": "Mentions légales",
+        "legal.title": "Mentions légales et confidentialité",
+        "legal.close": "Fermer",
+        "legal.body": "<h3>Éditeur</h3><p>Paul Doignon — entreprise individuelle (jednoosobowa działalność gospodarcza) inscrite au registre CEIDG.<br>ul. Lipowa 3D, 30-702 Kraków, Pologne<br>REGON : 543774020<br>E-mail : <a href='mailto:paul.doignon@gmail.com'>paul.doignon@gmail.com</a></p><h3>Hébergement</h3><p>Site hébergé par Netlify, Inc. (San Francisco, États-Unis) — netlify.com. Vidéos diffusées par Cloudinary — cloudinary.com.</p><h3>Confidentialité</h3><p>Ce site ne dépose aucun cookie et n'utilise aucun outil de mesure d'audience ni de publicité. Les polices sont hébergées sur le site : aucune donnée n'est transmise à Google.</p><p><strong>Langue choisie.</strong> Elle est enregistrée uniquement dans ton navigateur (stockage local « pd_lang ») et n'est jamais transmise. Tu peux l'effacer depuis les réglages de ton navigateur.</p><p><strong>Données techniques.</strong> Pour afficher le site et les vidéos, Netlify et Cloudinary reçoivent ton adresse IP et des informations techniques (navigateur, pages demandées). Elles servent uniquement au fonctionnement et à la sécurité du site (intérêt légitime, art. 6.1.f du RGPD). Ces prestataires peuvent les traiter hors de l'Union européenne, notamment aux États-Unis, avec les garanties prévues par le RGPD.</p><p><strong>Réservation.</strong> Le bouton « Réserver un appel » ouvre Calendly, qui applique sa propre politique de confidentialité. Les informations saisies lors d'une réservation me sont transmises pour organiser l'appel (art. 6.1.b du RGPD) et ne servent qu'à ce rendez-vous et à la suite de notre échange.</p><p><strong>Tes droits.</strong> Le responsable du traitement est Paul Doignon (coordonnées ci-dessus). Tu peux demander l'accès à tes données, leur rectification, leur effacement, la limitation de leur traitement ou leur portabilité, et t'opposer à leur traitement, en écrivant à paul.doignon@gmail.com. Tu peux aussi adresser une réclamation à l'autorité polonaise de protection des données : Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Varsovie — uodo.gov.pl.</p><small>Dernière mise à jour : novembre 2026</small>",
         "a11y.play": "Lire la vidéo",
         "a11y.fullscreen": "Plein écran"
       },
@@ -758,6 +826,10 @@
         "booking.sub": "A 30-minute call to scope your needs, your volume and your deadlines.",
         "footer.line": "PAUL — VIDEO EDITOR · UGC &amp; ADS · 9:16",
         "footer.top": "↑ Back to top",
+        "footer.legal": "Legal notice",
+        "legal.title": "Legal notice and privacy",
+        "legal.close": "Close",
+        "legal.body": "<h3>Publisher</h3><p>Paul Doignon — sole proprietorship (jednoosobowa działalność gospodarcza) registered in the Polish CEIDG business register.<br>ul. Lipowa 3D, 30-702 Kraków, Poland<br>REGON: 543774020<br>Email: <a href='mailto:paul.doignon@gmail.com'>paul.doignon@gmail.com</a></p><h3>Hosting</h3><p>Website hosted by Netlify, Inc. (San Francisco, USA) — netlify.com. Videos delivered by Cloudinary — cloudinary.com.</p><h3>Privacy</h3><p>This website sets no cookies and uses no analytics or advertising tools. Fonts are hosted on the site itself, so no data is sent to Google.</p><p><strong>Language preference.</strong> It is stored only in your browser (local storage, “pd_lang”) and is never sent anywhere. You can clear it in your browser settings.</p><p><strong>Technical data.</strong> To display the site and its videos, Netlify and Cloudinary receive your IP address and technical information (browser, pages requested). This data is used only to run and secure the site (legitimate interest, Art. 6(1)(f) GDPR). These providers may process it outside the European Union, notably in the United States, with the safeguards required by the GDPR.</p><p><strong>Booking.</strong> The “Book a call” button opens Calendly, which applies its own privacy policy. The details you enter when booking are passed to me to arrange the call (Art. 6(1)(b) GDPR) and are used only for that meeting and our follow-up.</p><p><strong>Your rights.</strong> The data controller is Paul Doignon (contact details above). You can request access to, correction, erasure or restriction of your data, its portability, or object to its processing by writing to paul.doignon@gmail.com. You can also lodge a complaint with the Polish data protection authority: Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warsaw — uodo.gov.pl.</p><small>Last updated: November 2026</small>",
         "a11y.play": "Play video",
         "a11y.fullscreen": "Fullscreen"
       },
@@ -794,6 +866,10 @@
         "booking.sub": "30-minutowa rozmowa, żeby ustalić zakres, wolumen i deadline'y.",
         "footer.line": "PAUL — MONTAŻYSTA WIDEO · UGC &amp; ADS · FORMAT 9:16",
         "footer.top": "↑ Do góry",
+        "footer.legal": "Informacje prawne",
+        "legal.title": "Informacje prawne i prywatność",
+        "legal.close": "Zamknij",
+        "legal.body": "<h3>Usługodawca</h3><p>Paul Doignon — jednoosobowa działalność gospodarcza wpisana do CEIDG.<br>ul. Lipowa 3D, 30-702 Kraków, Polska<br>REGON: 543774020<br>E-mail: <a href='mailto:paul.doignon@gmail.com'>paul.doignon@gmail.com</a></p><h3>Hosting</h3><p>Strona jest hostowana przez Netlify, Inc. (San Francisco, USA) — netlify.com. Filmy są udostępniane przez Cloudinary — cloudinary.com.</p><h3>Prywatność</h3><p>Ta strona nie używa plików cookie ani narzędzi analitycznych czy reklamowych. Czcionki są hostowane na tej stronie, więc żadne dane nie są przekazywane do Google.</p><p><strong>Wybrany język.</strong> Jest zapisywany wyłącznie w Twojej przeglądarce (pamięć lokalna „pd_lang”) i nigdzie nie jest przesyłany. Możesz go usunąć w ustawieniach przeglądarki.</p><p><strong>Dane techniczne.</strong> Aby wyświetlić stronę i filmy, Netlify i Cloudinary otrzymują Twój adres IP oraz informacje techniczne (przeglądarka, odwiedzane podstrony). Dane te służą wyłącznie do działania i zabezpieczenia strony (prawnie uzasadniony interes, art. 6 ust. 1 lit. f RODO). Dostawcy ci mogą przetwarzać je poza Unią Europejską, w szczególności w USA, z zachowaniem zabezpieczeń wymaganych przez RODO.</p><p><strong>Rezerwacja.</strong> Przycisk „Umów rozmowę” otwiera serwis Calendly, który stosuje własną politykę prywatności. Dane podane przy rezerwacji trafiają do mnie w celu zorganizowania rozmowy (art. 6 ust. 1 lit. b RODO) i służą wyłącznie do tego spotkania oraz dalszego kontaktu.</p><p><strong>Twoje prawa.</strong> Administratorem danych jest Paul Doignon (dane kontaktowe powyżej). Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania i przenoszenia, a także prawo sprzeciwu — wystarczy napisać na adres paul.doignon@gmail.com. Możesz też złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa — uodo.gov.pl.</p><small>Ostatnia aktualizacja: listopad 2026</small>",
         "a11y.play": "Odtwórz wideo",
         "a11y.fullscreen": "Pełny ekran"
       }
@@ -904,6 +980,19 @@
     });
   })();
   /* END CAROUSEL - LOCKED */
+
+  /* ---------- legal notice dialog ---------- */
+  (function(){
+    var dlg = document.getElementById('legal');
+    var openBtn = document.querySelector('.legal-open');
+    if(!dlg || !openBtn) return;
+    function open(){ if(dlg.showModal){ dlg.showModal(); } else { dlg.setAttribute('open', ''); } }
+    function close(){ if(dlg.close){ dlg.close(); } else { dlg.removeAttribute('open'); } }
+    openBtn.addEventListener('click', open);
+    dlg.querySelector('.legal-close').addEventListener('click', close);
+    // A click on the dimmed backdrop lands on the dialog element itself.
+    dlg.addEventListener('click', function(e){ if(e.target === dlg) close(); });
+  })();
 
   (function(){
     var fill = document.getElementById('scrubFill');
