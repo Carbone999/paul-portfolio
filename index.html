@@ -926,20 +926,27 @@
     document.addEventListener('scroll', onScroll, { passive:true });
     updateScrub();
 
-    var start = Date.now();
+    // Live timecode at 24 fps, driven by the display refresh so every frame
+    // (00 → 23) is shown in turn and seconds roll over exactly on time.
+    var FPS = 24;
+    var start = performance.now();
     var liveTc = document.getElementById('liveTc');
+    var lastFrame = -1;
     function pad(n, len){ return String(n).padStart(len || 2, '0'); }
-    function tick(){
-      var elapsed = Date.now() - start;
-      var totalSec = Math.floor(elapsed / 1000);
-      var h = Math.floor(totalSec / 3600);
-      var m = Math.floor((totalSec % 3600) / 60);
-      var s = totalSec % 60;
-      var f = Math.floor((elapsed % 1000) / 41.67); // ~24fps
-      liveTc.textContent = pad(h) + ':' + pad(m) + ':' + pad(s) + ':' + pad(f);
+    function tick(now){
+      var totalFrames = Math.floor((now - start) * FPS / 1000);
+      if(totalFrames !== lastFrame){
+        lastFrame = totalFrames;
+        var totalSec = Math.floor(totalFrames / FPS);
+        var h = Math.floor(totalSec / 3600);
+        var m = Math.floor((totalSec % 3600) / 60);
+        var s = totalSec % 60;
+        var f = totalFrames % FPS;
+        liveTc.textContent = pad(h) + ':' + pad(m) + ':' + pad(s) + ':' + pad(f);
+      }
+      if(!reduced){ requestAnimationFrame(tick); }
     }
-    tick();
-    if(!reduced){ setInterval(tick, 100); }
+    tick(start);
   })();
 
   (function(){
