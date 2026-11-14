@@ -911,7 +911,21 @@
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
 
+      // No orphan words: glue the last word of every paragraph / heading to the
+      // one before it with a non-breaking space, in every language and width.
+      // Headings with a deliberate <br> (e.g. "Carré, rapide,<br>vertical.")
+      // keep their break: their last text chunk has no space to glue.
+      each('.hero p, main p, main h2, main h3, footer .footer-inner > span, .legal-body p', glueLastWord);
+
       try{ localStorage.setItem(STORE, lang); }catch(e){}
+    }
+
+    function glueLastWord(el){
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      var last = null, node;
+      while((node = walker.nextNode())){ if(/\S/.test(node.data)) last = node; }
+      if(!last) return;
+      last.data = last.data.replace(/\s+(\S+\s*)$/, ' $1');
     }
 
     each('.lang-btn', function(b){
